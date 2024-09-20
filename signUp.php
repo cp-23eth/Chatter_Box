@@ -2,6 +2,25 @@
     session_start();
     require_once('db.php');
     $db = new db("root", "");
+    $_SESSION['errorSignUp'] = "";
+?>
+
+<?php 
+    if(isset($_POST['adresseMail']) && isset($_POST['nomUser']) && isset($_POST['motDePasse'])){
+        $adresseMail = $_POST['adresseMail'];
+        $nomUser = $_POST['nomUser'];
+        $motDePasse = $_POST['motDePasse'];
+
+        if ($db->verifyUser($adresseMail, $nomUser)){
+            if($db->createUser($adresseMail, $nomUser, $motDePasse)){
+                header("Location: login.php");
+                exit();
+            }
+        }
+        else {
+            $_SESSION['errorSignUp'] = "Le nom ou l'adresse mail sont déjà utilisés";
+        }
+    }
 ?>
 
 <!doctype html>
@@ -57,7 +76,7 @@
                         <button class="btn-custom" onclick="window.location.href='login.php'">Login</button>
                         <br>
 
-                        <div class="text-center text-danger" id="errorSignUp" name="errorSignUp"></div>
+                        <h4 class="text-center text-danger"><?= $_SESSION['errorSignUp'] ?></h4>
                     </div>
 
                     <!-- Côté droit -->
@@ -83,34 +102,5 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
-
-        <?php 
-            if(isset($_POST['adresseMail']) && isset($_POST['nomUser']) && isset($_POST['motDePasse'])){
-                $adresseMail = $_POST['adresseMail'];
-                $nomUser = $_POST['nomUser'];
-                $motDePasse = $_POST['motDePasse'];
-
-                if ($db->verifyUser($adresseMail, $nomUser)){
-                    if($db->createUser($adresseMail, $nomUser, $motDePasse)){
-                        header("Location: login.php");
-                        exit();
-                    }
-                }
-                else {
-                    // echo "<script type='text/javascript'>
-                    //     errorSignUp();
-                    // </script>";
-
-                    // -> mettre le message d'erreur
-                }
-            }
-        ?>
-
-        <!-- <script>
-            function errorSignUp() {
-                const errorSignUp = document.getElementById("errorSignUp");
-                errorSignUp.innerHTML = "Erreur, ces identifiants sont déjà pris"
-            }
-        </script> -->
     </body>
 </html>

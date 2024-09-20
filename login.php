@@ -2,6 +2,22 @@
     session_start();
     require_once('db.php');
     $db = new db("root", "");
+    $_SESSION['errorLogin'] = "";
+?>
+
+<?php
+    if(isset($_POST['nomUser']) && isset($_POST['motDePasse'])){
+        $nomUser = $_POST['nomUser'];                
+        $motDePasse = $_POST['motDePasse'];                
+
+        if($db->verifyLogin($nomUser, $motDePasse)){
+            header("Location: home.php");
+            exit();
+        }
+        else {
+            $_SESSION['errorLogin'] = "Les identifants sont incorrects";
+        }
+    }
 ?>
 
 <!doctype html>
@@ -52,6 +68,8 @@
 
                         <!-- Bouton signUp -->
                         <button class="btn-custom" onclick="window.location.href='signUp.php'">SignUp</button>
+
+                        <h4 class="text-danger text-center mt-3"><?= $_SESSION['errorLogin'] ?></h4>
                     </div>
 
                     <!-- Côté droit -->
@@ -77,20 +95,5 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
-
-        <?php
-            if(isset($_POST['nomUser']) && isset($_POST['motDePasse'])){
-                $nomUser = $_POST['nomUser'];                
-                $motDePasse = $_POST['motDePasse'];                
-
-                if($db->verifyLogin($nomUser, $motDePasse)){
-                    header("Location: home.php");
-                    exit();
-                }
-                else {
-                    // message d'erreur
-                }
-            }
-        ?>
     </body>
 </html>

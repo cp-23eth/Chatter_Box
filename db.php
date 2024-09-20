@@ -40,10 +40,37 @@
             $stmt->bindParam(':motDePasse', $motDePasse);
             $stmt->execute();
 
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
             $value = $stmt->rowCount();
 
             if($value === 1){
                 $_SESSION['nomUser'] = $nomUser;
+                $_SESSION['motDePasse'] = $motDePasse;
+                $_SESSION['adresseMail'] = $user['adresseMail'];
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        function changePassword($mdpActuel, $nouveauMdp){
+            $nomUser = $_SESSION['nomUser'];
+            $stmt = $this->dbh->prepare("SELECT `motDePasse` FROM `utilisateur` WHERE `motDePasse` = :motDePasse AND `nomUser` = :nomUser");
+            $stmt->bindParam(':motDePasse', $mdpActuel);
+            $stmt->bindParam(':nomUser', $nomUser);
+            $stmt->execute();
+
+            $value = $stmt->rowCount();
+
+            if ($value === 1){
+                $stmt = $this->dbh->prepare("UPDATE `utilisateur` SET `motDePasse` = :nouveauMdp WHERE `nomUser` = :nomUser");
+                $stmt->bindParam(':nouveauMdp', $nouveauMdp);
+                $stmt->bindParam(':nomUser', $nomUser);
+                $stmt->execute();
+
+                $_SESSION['motDePasse'] = $nouveauMdp;
                 return true;
             }
             else {

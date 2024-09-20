@@ -1,1 +1,15 @@
-- mettre le message d'erreur pour le sign Up
+- centrer le bouton confirmer + les messages d'erreur --> change your password
+
+En cas de temops :
+- Ajouter des champs bdd utilisateur :
+    - nom
+    - prenom
+    - avatar
+    - age
+    - pays
+    - bio
+    - etc.
+
+
+
+    --> caractères max post --> 850

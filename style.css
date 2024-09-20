@@ -1,5 +1,5 @@
 h1 {
-    font-size: 5rem;
+    font-size: 4.5rem;
     font-weight: 800;
     line-height: 1.2;
 }
@@ -29,7 +29,16 @@ body {
 }
 .btn-custom {
     background-color: #767F89;
-    color: rgb(255, 255, 255);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 0.8rem;
+}
+.btn-pswd {
+    background-color: white;
+    color: #262626;
+    width: 120px;
     padding: 10px 20px;
     border: none;
     border-radius: 25px;
