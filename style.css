@@ -1,0 +1,37 @@
+h1 {
+    font-size: 5rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+body {
+    font-family: 'Georgia', serif;
+}
+.input {
+    background-color: #767F89;
+    color: white;
+}
+.button {
+    background-color: #767F89;
+}
+.half-right {
+    background-color: #767F89;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.half-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.btn-custom {
+    background-color: #767F89;
+    color: rgb(255, 255, 255);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 0.8rem;
+}
