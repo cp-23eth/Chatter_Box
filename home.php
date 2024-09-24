@@ -5,7 +5,14 @@
 
     if ($_SESSION['canal'] == "logOut") {
         $canaux = $db->takeCanal($_SESSION['nomUser']);
-        $_SESSION['canal'] = $canaux[0]['nomCanal'];
+        
+        if ($canaux === false){
+            $_SESSION['canal'] = $canaux[0]['nomCanal'];
+        }
+        else {
+            header("Location: createCanal.php");
+            exit();
+        }
     }
 ?>
 
@@ -50,10 +57,20 @@
             <div class="middle-column">
                 <?php 
                     $posts = $db->takePost($_SESSION['canal']);
-
+                    $firstPost = 0;
                     foreach($posts as $post){
-                        for($i = 0; $i <= count($post); $i += 10){
-                            echo ""
+                        $i = 0;
+                        if ($firstPost !== 0){
+                           while($i < count($post)){
+                                echo str_repeat("<br>", $i);
+                                $i++;
+                            } 
+                            $firstPost++;
+                        }
+                        else {
+                            $firstPost++;
+                        }
+                        
                 ?>
                 <div class="post">
                     <h2 class="m-3"><?= $post['nom'] ?> : <?= $post['nomUser'] ?></h2>
@@ -74,7 +91,6 @@
                 </div>
 
                 <?php
-                        }
                     }
                 ?>
             </div>

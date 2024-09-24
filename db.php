@@ -113,5 +113,17 @@
 
             return $posts;
         }
+
+        function takeMyPost($user){
+            $stmt = $this->dbh->prepare("SELECT * FROM `post` WHERE `nomUser` = :user");
+            $stmt->bindParam("user", $user);
+            $stmt->execute();
+
+            $posts = [];
+
+            $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $posts;
+        }
     }
 ?>
