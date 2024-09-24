@@ -4,6 +4,14 @@
     $db = new db("root", "");
 ?>
 
+<?php
+    if(isset($_POST['titre']) && isset($_POST['description'])){
+        $titre = $_POST['titre'];
+        $description = $_POST['description'];
+        $date = date("d-m-Y");
+        $nomUser = $_SESSION['user'];
+    }            
+?>
 <!doctype html>
 <html lang="en">
     <head>
@@ -41,20 +49,20 @@
                 <h3 class="logout" onclick="window.location.href='login.php'">Deconnexion</h3>
         </div>
         <div class="middle-column">
-            <div class="post">
-                <h2><input type="text" placeholder="Titre" class="title"></h2>
+            <form method="post" class="post">
+                <h2><input type="text" placeholder="Titre" class="title" name="titre"></h2>
                 <hr>
                 <div class="container">
                     <div class="row">
                         <div class="col-7">
-                            <textarea type="text" placeholder="Description" class="description"></textarea>
+                            <textarea type="text" placeholder="Description" class="description" name="description"></textarea>
                         </div>
                         <div class="offset-1 col-4">
                             <img class="imagePost" src="img/upload.jpg" alt="upload icon">
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
         <div class="right-column">
             <img class="imgColR" src="img/Logo - chatterBox - png - white.png" alt="logo blanc">
@@ -75,5 +83,7 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+
+        
     </body>
 </html>

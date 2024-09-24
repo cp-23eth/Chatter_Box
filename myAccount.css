@@ -65,8 +65,8 @@ input {
 }
 
 .imgColR {
-    position: absolute;
-    bottom: 50px;
+    position: fixed;
+    bottom: 40px;
     right: 45px;
     height: 150px;
     width: 150px;

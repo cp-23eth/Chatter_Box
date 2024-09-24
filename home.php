@@ -2,6 +2,11 @@
     session_start();
     require_once('db.php');
     $db = new db("root", "");
+
+    if ($_SESSION['canal'] == "logOut") {
+        $canaux = $db->takeCanal($_SESSION['nomUser']);
+        $_SESSION['canal'] = $canaux[0]['nomCanal'];
+    }
 ?>
 
 <!doctype html>
@@ -25,11 +30,13 @@
 
         <link rel="stylesheet" type="text/css" href="style.css" media="all">
         <link rel="stylesheet" type="text/css" href="home.css" media="all">
+        <script src="changeCanal.js"></script>
+        <script src="logOut.js"></script>
     </head>
 
-    <body>
+    <body onload="init()">
         <header>
-            <h1>My canal</h1>
+            <h1><?= $_SESSION['canal'] ?></h1>
         </header>
         <main>
             <div class="left-column">
@@ -86,10 +93,17 @@
                 </div>
             </div>
             <div class="right-column">
-                <h2 class="bold">My canal</h2>
-                <h2>Mafille's canal</h2>
-                <h2>Golay's canal</h2>
-                <h2>Da cruz's canal</h2>
+            <?php
+                $canaux = $db->takeCanal($_SESSION['nomUser']);
+                for ($i = 0; $i < count($canaux); $i++){
+                    foreach($canaux[$i] as $canal){ ?>
+                        <div class="channel" channel="<?= $canal ?>">
+                            <h2><?= $canal ?></h2>
+                        </div>
+            <?php
+                    } 
+                }  
+            ?> 
 
                 <img class="imgColR" src="img/Logo - chatterBox - png - white.png" alt="logo blanc">
             </div>

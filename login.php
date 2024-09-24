@@ -3,6 +3,7 @@
     require_once('db.php');
     $db = new db("root", "");
     $_SESSION['errorLogin'] = "";
+    $_SESSION['canal'] = "logOut";
 ?>
 
 <?php
@@ -11,6 +12,7 @@
         $motDePasse = $_POST['motDePasse'];                
 
         if($db->verifyLogin($nomUser, $motDePasse)){
+            $_SESSION['user'] = $_POST['nomUser'];
             header("Location: home.php");
             exit();
         }

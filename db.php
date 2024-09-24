@@ -77,5 +77,17 @@
                 return false;
             }
         }
+
+        function takeCanal($nomUser){
+            $stmt = $this->dbh->prepare("SELECT `nomCanal` FROM `appartient` WHERE `nomUser` = :nomUser");
+            $stmt->bindParam(':nomUser', $nomUser);
+            $stmt->execute();
+
+            $canaux = [];
+
+            $canaux = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $canaux;
+        }
     }
 ?>

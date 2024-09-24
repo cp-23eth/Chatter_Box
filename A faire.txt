@@ -9,6 +9,7 @@ En cas de temops :
     - pays
     - bio
     - etc.
+- Mettre en gras le canal actuel
 
 
 
