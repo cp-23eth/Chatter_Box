@@ -89,5 +89,29 @@
 
             return $canaux;
         }
+
+        function createPost($titre, $description, $datePost, $nomUser, $canal){
+            $stmt = $this->dbh->prepare("INSERT INTO `post` (`nom`, `description`, `datePost`, `nomUser`, `nomCanal`) VALUES(:titre, :description, :datePost, :nomUser, :canal)");
+            $stmt->bindParam("titre", $titre);
+            $stmt->bindParam("description", $description);
+            $stmt->bindParam("datePost", $datePost);
+            $stmt->bindParam("nomUser", $nomUser);
+            $stmt->bindParam("canal", $canal);
+            $stmt->execute();
+
+            return true;
+        }
+
+        function takePost($canal){
+            $stmt = $this->dbh->prepare("SELECT * FROM `post` WHERE `nomCanal` = :canal");
+            $stmt->bindParam("canal", $canal);
+            $stmt->execute();
+
+            $posts = [];
+
+            $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $posts;
+        }
     }
 ?>

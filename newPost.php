@@ -5,11 +5,17 @@
 ?>
 
 <?php
-    if(isset($_POST['titre']) && isset($_POST['description'])){
+    if(isset($_POST['titre'])  && isset($_POST['description']) && isset($_POST['canal'])){
         $titre = $_POST['titre'];
         $description = $_POST['description'];
-        $date = date("d-m-Y");
+        $date = date("Y-m-d");
         $nomUser = $_SESSION['user'];
+        $canal = $_POST['canal'];
+
+        if($db->createPost($titre, $description, $date, $nomUser, $canal)){
+            header("Location: home.php");
+            exit();
+        }
     }            
 ?>
 <!doctype html>
@@ -49,18 +55,23 @@
                 <h3 class="logout" onclick="window.location.href='login.php'">Deconnexion</h3>
         </div>
         <div class="middle-column">
-            <form method="post" class="post">
-                <h2><input type="text" placeholder="Titre" class="title" name="titre"></h2>
-                <hr>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-7">
-                            <textarea type="text" placeholder="Description" class="description" name="description"></textarea>
-                        </div>
-                        <div class="offset-1 col-4">
-                            <img class="imagePost" src="img/upload.jpg" alt="upload icon">
+            <form method="post">
+                <div class="post">
+                    <h2><input type="text" placeholder="Titre" class="title me-5" name="titre"><input type="text" placeholder="Canal" class="title" name="canal"></h2>
+                    <hr>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-7">
+                                <textarea type="text" placeholder="Description" class="description" name="description"></textarea>
+                            </div>
+                            <div class="offset-1 col-4">
+                                <img class="imagePost" src="img/upload.jpg" alt="upload icon">
+                            </div>
                         </div>
                     </div>
+                </div>
+                <div class="row">
+                        <button class="offset-5 col-3 btn-pswd mt-5" type="submit">Confirmer</button>
                 </div>
             </form>
         </div>

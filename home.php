@@ -48,49 +48,35 @@
                 <h3 class="logout" onclick="window.location.href='login.php'">Deconnexion</h3>
             </div>
             <div class="middle-column">
-                <!-- post 1 -->
+                <?php 
+                    $posts = $db->takePost($_SESSION['canal']);
+
+                    foreach($posts as $post){
+                        for($i = 0; $i <= count($post); $i += 10){
+                            echo ""
+                ?>
                 <div class="post">
-                    <h2 class="m-3">Titre : $user</h2>
+                    <h2 class="m-3"><?= $post['nom'] ?> : <?= $post['nomUser'] ?></h2>
                     <hr>
                     <div class="container">
                         <div class="row">
                             <div class="col-7">
-                                <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nec  commodo purus. Nam a est ac diam commodo bibendum. Vestibulum et risus  et urna maximus pulvinar. Proin efficitur lorem fringilla libero  volutpat, ac eleifend tellus rutrum. Sed accumsan dui eu tortor  condimentum, a auctor lectus semper. Donec cursus vestibulum justo ut  tempor. Vestibulum turpis sem, tempor eget libero id, facilisis dapibus  lorem. Vivamus nibh neque, euismod ut magna porta, fermentum rutrum  augue. Nullam vel felis ac purus tempus mollis ac ultrices dui. Nam  aliquam aliquet arcu dictum malesuada. Nam porta vestibulum magna  feugiat lobortis. Integer luctus ut est vitae interdum. Duis varius id  eros in consequat. Vestibulum iaculis ultrices dolor, vitae cursus est.  Pellentesque faucibus turpis vitae diam lobortis, ac ullamcorper neque  scelerisque.</p>
+                                <p class="description"><?= $post['description'] ?></p>
                             </div>
                             <div class="offset-1 col-4">
                             <img class="imagePost" src="img/Cat.jpg" alt="chat">
                             </div>
                         </div>
-                    </div>
-                    <!-- post 2 -->
-                    <div class="post">
-                    <h2 class="m-3">Titre 2 : $user</h2>
-                    <hr>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-7">
-                                <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nec  commodo purus. Nam a est ac diam commodo bibendum. Vestibulum et risus  et urna maximus pulvinar. Proin efficitur lorem fringilla libero  volutpat, ac eleifend tellus rutrum. Sed accumsan dui eu tortor  condimentum, a auctor lectus semper. Donec cursus vestibulum justo ut  tempor. Vestibulum turpis sem, tempor eget libero id, facilisis dapibus  lorem. Vivamus nibh neque, euismod ut magna porta, fermentum rutrum  augue. Nullam vel felis ac purus tempus mollis ac ultrices dui. Nam  aliquam aliquet arcu dictum malesuada. Nam porta vestibulum magna  feugiat lobortis. Integer luctus ut est vitae interdum. Duis varius id  eros in consequat. Vestibulum iaculis ultrices dolor, vitae cursus est.  Pellentesque faucibus turpis vitae diam lobortis, ac ullamcorper neque  scelerisque.</p>
-                            </div>
-                            <div class="offset-1 col-4">
-                            <img class="imagePost" src="img/Cat.jpg" alt="chat">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- post 3 -->
-                    <div class="post">
-                    <h2 class="m-3">Titre 3 : $user</h2>
-                    <hr>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-7">
-                                <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nec  commodo purus. Nam a est ac diam commodo bibendum. Vestibulum et risus  et urna maximus pulvinar. Proin efficitur lorem fringilla libero  volutpat, ac eleifend tellus rutrum. Sed accumsan dui eu tortor  condimentum, a auctor lectus semper. Donec cursus vestibulum justo ut  tempor. Vestibulum turpis sem, tempor eget libero id, facilisis dapibus  lorem. Vivamus nibh neque, euismod ut magna porta, fermentum rutrum  augue. Nullam vel felis ac purus tempus mollis ac ultrices dui. Nam  aliquam aliquet arcu dictum malesuada. Nam porta vestibulum magna  feugiat lobortis. Integer luctus ut est vitae interdum. Duis varius id  eros in consequat. Vestibulum iaculis ultrices dolor, vitae cursus est.  Pellentesque faucibus turpis vitae diam lobortis, ac ullamcorper neque  scelerisque.</p>
-                            </div>
-                            <div class="offset-1 col-4">
-                            <img class="imagePost" src="img/Cat.jpg" alt="chat">
-                            </div>
+						<div class="row">
+                                <p class="ms-2"><?= $post['datePost'] ?></p>
                         </div>
                     </div>
                 </div>
+
+                <?php
+                        }
+                    }
+                ?>
             </div>
             <div class="right-column">
             <?php

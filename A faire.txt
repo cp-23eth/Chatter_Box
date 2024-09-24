@@ -10,6 +10,7 @@ En cas de temops :
     - bio
     - etc.
 - Mettre en gras le canal actuel
+- Mettre déroulante pour le choix du canal lors du post
 
 
 
