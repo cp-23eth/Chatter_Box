@@ -90,6 +90,17 @@
             return $canaux;
         }
 
+        function takeAllCanal() {
+            $stmt = $this->dbh->prepare("SELECT `nomCanal` FROM `canal`");
+            $stmt->execute();
+
+            $canaux = [];
+
+            $canaux = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $canaux;
+        }
+
         function createPost($titre, $description, $datePost, $nomUser, $canal){
             $stmt = $this->dbh->prepare("INSERT INTO `post` (`nom`, `description`, `datePost`, `nomUser`, `nomCanal`) VALUES(:titre, :description, :datePost, :nomUser, :canal)");
             $stmt->bindParam("titre", $titre);
@@ -124,6 +135,32 @@
             $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $posts;
+        }
+
+        function createCanal($nomCanal){
+            $stmt = $this->dbh->prepare("INSERT INTO `canal` (`nomCanal`) VALUES (:nomCanal)");
+            $stmt->bindParam(":nomCanal", $nomCanal);
+            $stmt->execute();
+
+            $this->peupleAppartientAdmin($nomCanal);
+        }
+
+        function peupleAppartientAdmin($nomCanal) {
+            $nomUser = $_SESSION['user'];
+            $stmt = $this->dbh->prepare("INSERT INTO `appartient` (`nomUser`, `nomCanal`, `isAdmin`) VALUES (:nomUser, :nomCanal, 1)");
+            $stmt->bindParam(":nomUser", $nomUser);
+            $stmt->bindParam(":nomCanal", $nomCanal);
+            $stmt->execute();
+        }
+
+        function makeSubscription($sub){
+            $nomUser = $_SESSION['nomUser'];
+            $stmt = $this->dbh->prepare("INSERT INTO `appartient` (`nomUser`, `nomCanal`, `isAdmin`) VALUES (:nomUser, :sub, 0)");
+            $stmt->bindParam("nomUser", $nomUser);
+            $stmt->bindParam("sub", $sub);
+            $stmt->execute();
+
+            return true;
         }
     }
 ?>

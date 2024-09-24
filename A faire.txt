@@ -1,17 +1,16 @@
-- centrer le bouton confirmer + les messages d'erreur --> change your password
+- Mettre en page la page souscription
+    - afficher un message en cas d'abonnement --> $_SESSION
 
-En cas de temops :
-- Ajouter des champs bdd utilisateur :
-    - nom
-    - prenom
-    - avatar
-    - age
-    - pays
-    - bio
-    - etc.
+- Limiter à 850 caractères pour le post
+
+- Mettre une erreur en cas de création d'un canal existant
+
+- Mettre en place une liste déroulante pour le choix du canal --> new post
+
+- Centrer erreur + bouton change password
+
+- Intégrer les images
+
 - Mettre en gras le canal actuel
-- Mettre déroulante pour le choix du canal lors du post
 
-
-
-    --> caractères max post --> 850
+(- ajouter des champs utilisateur supplémentaire)

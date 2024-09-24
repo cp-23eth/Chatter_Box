@@ -37,6 +37,8 @@
             <h2 class="bold">My account</h2>
             <h2 onclick="window.location.href='newPost.php'">New post</h2>
             <h2 onclick="window.location.href='myLastPosts.php'">My posts</h2>
+            <h2 onclick="window.location.href='createCanal.php'">New Canal</h2>
+            <h2 onclick="window.location.href='subscribe.php'">Subscription</h2>
 
             <h3 class="logout" onclick="window.location.href='login.php'">Deconnexion</h3>
         </div>

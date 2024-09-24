@@ -2,22 +2,9 @@
     session_start();
     require_once('db.php');
     $db = new db("root", "");
+
 ?>
 
-<?php
-    if(isset($_POST['titre'])  && isset($_POST['description']) && isset($_POST['canal'])){
-        $titre = $_POST['titre'];
-        $description = $_POST['description'];
-        $date = date("Y-m-d");
-        $nomUser = $_SESSION['user'];
-        $canal = $_POST['canal'];
-
-        if($db->createPost($titre, $description, $date, $nomUser, $canal)){
-            header("Location: home.php");
-            exit();
-        }
-    }            
-?>
 <!doctype html>
 <html lang="en">
     <head>
@@ -39,43 +26,39 @@
 
         <link rel="stylesheet" type="text/css" href="style.css" media="all">
         <link rel="stylesheet" type="text/css" href="newPost.css" media="all">
+
+        <script src="changeCanal.js"></script>
     </head>
 
-    <body>
+    <body onload="init2()">
         <header>
-            <h1>New post</h1>
+            <h1>Subscription</h1>
         </header>
         <main>
         <div class="left-column">
                 <h2 onclick="window.location.href='home.php'">Home</h2>
                 <h2 onclick="window.location.href='myAccount.php'">My account</h2>
-                <h2 class="bold">New post</h2>
+                <h2 onclick="window.location.href='newPost.php'">New post</h2>
                 <h2 onclick="window.location.href='myLastPosts.php'">My posts</h2>
                 <h2 onclick="window.location.href='createCanal.php'">New Canal</h2>
-                <h2 onclick="window.location.href='subscribe.php'">Subscription</h2>
+                <h2 class="bold">Subscription</h2>
 
                 <h3 class="logout" onclick="window.location.href='login.php'">Deconnexion</h3>
         </div>
         <div class="middle-column">
-            <form method="post">
-                <div class="post">
-                    <h2><input type="text" placeholder="Titre" class="title me-5" name="titre"><input type="text" placeholder="Canal" class="title" name="canal"></h2>
-                    <hr>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-7">
-                                <textarea type="text" placeholder="Description" class="description" name="description"></textarea>
-                            </div>
-                            <div class="offset-1 col-4">
-                                <img class="imagePost" src="img/upload.jpg" alt="upload icon">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="container">
                 <div class="row">
-                        <button class="offset-5 col-3 btn-pswd mt-5" type="submit">Confirmer</button>
+                <?php
+                    $canaux = $db->takeAllCanal();
+
+                    foreach($canaux as $canal){?>
+                        <h2> <?= htmlspecialchars($canal['nomCanal']) ?> </h2>
+                        <button class='btn-pswd' onclick="subscribe('<?= addslashes($canal['nomCanal']) ?>')">subscribe</button>
+                    <?php
+                    }
+                ?>
                 </div>
-            </form>
+            </div>
         </div>
         <div class="right-column">
             <img class="imgColR" src="img/Logo - chatterBox - png - white.png" alt="logo blanc">
@@ -96,7 +79,5 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
-
-        
     </body>
 </html>

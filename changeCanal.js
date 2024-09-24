@@ -3,6 +3,11 @@ function changeCanal(channel) {
     location.reload();
 }
 
+function subscribe(sub){
+    fetch('makeSubsciption.php?sub=' +sub)
+    location.reload;
+}
+
 function init(){
     const channels = document.getElementsByClassName("channel");
     for(let elem of channels){
