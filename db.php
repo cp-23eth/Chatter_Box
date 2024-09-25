@@ -91,7 +91,7 @@
         }
 
         function takeAllCanal() {
-            $stmt = $this->dbh->prepare("SELECT `nomCanal` FROM `canal`");
+            $stmt = $this->dbh->prepare("SELECT DISTINCT `nomCanal`, `nomUser` FROM `appartient` WHERE `isAdmin` = 1 ORDER BY `nomCanal` ASC");
             $stmt->execute();
 
             $canaux = [];

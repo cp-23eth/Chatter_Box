@@ -3,8 +3,15 @@ function changeCanal(channel) {
     location.reload();
 }
 
-function subscribe(sub){
-    fetch('makeSubsciption.php?sub=' +sub)
+async function subscribe(sub){
+    const result = await fetch('makeSubsciption.php?sub=' +sub);
+    const text = await result.text();
+    if (text.startsWith("Vous vous êtes")){
+        alert(text);
+    }
+    else {
+        alert("Vous êtes déjà abonnés à ce canal")
+    }
     location.reload;
 }
 

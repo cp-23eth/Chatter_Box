@@ -1,6 +1,3 @@
-- Mettre en page la page souscription
-    - afficher un message en cas d'abonnement --> $_SESSION
-
 - Limiter à 850 caractères pour le post
 
 - Mettre une erreur en cas de création d'un canal existant
@@ -13,4 +10,10 @@
 
 - Mettre en gras le canal actuel
 
+- Mettre le caractères spéciaux htmlspecialchars
+
+- Aligner le texte des menus sur la gauche
+
 (- ajouter des champs utilisateur supplémentaire)
+
+(- changer le titre de la alerte box subscribe)

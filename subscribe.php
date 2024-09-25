@@ -25,7 +25,7 @@
         />
 
         <link rel="stylesheet" type="text/css" href="style.css" media="all">
-        <link rel="stylesheet" type="text/css" href="newPost.css" media="all">
+        <link rel="stylesheet" type="text/css" href="subscribe.css" media="all">
 
         <script src="changeCanal.js"></script>
     </head>
@@ -46,14 +46,19 @@
                 <h3 class="logout" onclick="window.location.href='login.php'">Deconnexion</h3>
         </div>
         <div class="middle-column">
-            <div class="container">
-                <div class="row">
+            <div class="container-fluid">
+                <div class="row ms-5">
                 <?php
                     $canaux = $db->takeAllCanal();
 
-                    foreach($canaux as $canal){?>
-                        <h2> <?= htmlspecialchars($canal['nomCanal']) ?> </h2>
-                        <button class='btn-pswd' onclick="subscribe('<?= addslashes($canal['nomCanal']) ?>')">subscribe</button>
+                    foreach($canaux as $canal){
+                        $_SESSION['subOK'] = "";
+                        ?>
+                        <div class="canal-container">
+                            <h2 class="canal-info"> <?= htmlspecialchars($canal['nomCanal']) ?> - <?= htmlspecialchars($canal['nomUser']) ?> :</h2>
+                            <button class='btn-sub' onclick="subscribe('<?= addslashes($canal['nomCanal']) ?>')">subscribe</button>
+                        </div>
+                        <hr class="hr">
                     <?php
                     }
                 ?>

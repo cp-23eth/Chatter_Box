@@ -97,18 +97,19 @@
                 ?>
             </div>
             <div class="right-column">
-            <?php
-                $canaux = $db->takeCanal($_SESSION['nomUser']);
-                for ($i = 0; $i < count($canaux); $i++){
-                    foreach($canaux[$i] as $canal){ ?>
-                        <div class="channel" channel="<?= $canal ?>">
-                            <h2><?= $canal ?></h2>
-                        </div>
-            <?php
-                    } 
-                }  
-            ?> 
-
+                <div class="canaux">
+                    <?php
+                        $canaux = $db->takeCanal($_SESSION['nomUser']);
+                        for ($i = 0; $i < count($canaux); $i++){
+                            foreach($canaux[$i] as $canal){ ?>
+                                <div class="channel" channel="<?= $canal ?>">
+                                    <h2><?= $canal ?></h2>
+                                </div>
+                    <?php
+                            } 
+                        }  
+                    ?> 
+                </div>
                 <img class="imgColR" src="img/Logo - chatterBox - png - white.png" alt="logo blanc">
             </div>
         </main>
