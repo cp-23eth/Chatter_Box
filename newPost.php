@@ -2,19 +2,26 @@
     session_start();
     require_once('db.php');
     $db = new db("root", "");
+    $_SESSION['errorDesc'] = "";
 ?>
 
 <?php
-    if(isset($_POST['titre'])  && isset($_POST['description']) && isset($_POST['canal'])){
-        $titre = $_POST['titre'];
-        $description = $_POST['description'];
+    if(isset($_POST['titre'])  && isset($_POST['description']) && isset($_POST['canaux'])){
+        $titre = htmlspecialchars($_POST['titre']);
+        $description = htmlspecialchars($_POST['description']);
         $date = date("Y-m-d");
         $nomUser = $_SESSION['user'];
-        $canal = $_POST['canal'];
+        $canal = $_POST['canaux'];
+        // $imgSrc = $_SESSION['imgSrc'];
 
-        if($db->createPost($titre, $description, $date, $nomUser, $canal)){
-            header("Location: home.php");
-            exit();
+        if (strlen($description) < 850){
+            if($db->createPost($titre, $description, $date, $nomUser, $canal)){
+                header("Location: home.php");
+                exit();
+            }
+        }
+        else {
+            $_SESSION['errorDesc'] = "Votre description comporte plus que 850 caractères, veuillez la racourcir";
         }
     }            
 ?>
@@ -39,6 +46,8 @@
 
         <link rel="stylesheet" type="text/css" href="style.css" media="all">
         <link rel="stylesheet" type="text/css" href="newPost.css" media="all">
+
+        <script src="image-NewPost.js"></script>
     </head>
 
     <body>
@@ -47,19 +56,33 @@
         </header>
         <main>
         <div class="left-column">
-                <h2 onclick="window.location.href='home.php'">Home</h2>
-                <h2 onclick="window.location.href='myAccount.php'">My account</h2>
-                <h2 class="bold">New post</h2>
-                <h2 onclick="window.location.href='myLastPosts.php'">My posts</h2>
-                <h2 onclick="window.location.href='createCanal.php'">New Canal</h2>
-                <h2 onclick="window.location.href='subscribe.php'">Subscription</h2>
+            <h2 onclick="window.location.href='home.php'" class="side">🏠 Home</h2>
+            <h2 onclick="window.location.href='myAccount.php'" class="side">👤 My account</h2>
+            <h2 style="font-weight: 900;" class="side">🆕 New post</h2>
+            <h2 onclick="window.location.href='myLastPosts.php'" class="side">💬 My posts</h2>
+            <h2 onclick="window.location.href='createCanal.php'" class="side">✏️ New Canal</h2>
+            <h2 onclick="window.location.href='subscribe.php'" class="side">➕ Subscribe</h2>
 
                 <h3 class="logout" onclick="window.location.href='login.php'">Deconnexion</h3>
         </div>
         <div class="middle-column">
             <form method="post">
                 <div class="post">
-                    <h2><input type="text" placeholder="Titre" class="title me-5" name="titre"><input type="text" placeholder="Canal" class="title" name="canal"></h2>
+                    <div class="container">
+                        <h2><input type="text" placeholder="Titre" class="title me-5" name="titre"></h2>
+                        <label for="canaux"><h2>Canal :</h2></label>
+                        <select name="canaux" id="canaux">
+                        <?php 
+                            $canaux = $db->takeCanal($_SESSION['nomUser']);
+                            $i = 1;
+
+                            foreach ($canaux as $canal){
+                                $c = $canal['nomCanal'];
+                                echo "<option value='$c'>$c</option>";
+                            }
+                        ?>
+                        </select>
+                    </div>
                     <hr>
                     <div class="container">
                         <div class="row">
@@ -67,13 +90,17 @@
                                 <textarea type="text" placeholder="Description" class="description" name="description"></textarea>
                             </div>
                             <div class="offset-1 col-4">
-                                <img class="imagePost" src="img/upload.jpg" alt="upload icon">
+                                <img class="imagePost" src="img/upload.jpg" alt="upload icon" id="image-preview">
+                                <input id="file-upload" type="file" accept=".jpg, .jpeg, .png">
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                        <button class="offset-5 col-3 btn-pswd mt-5" type="submit">Confirmer</button>
+                <div class="row text-center">
+                        <button class="offset-5 col-3 btn-pswd mt-5" type="submit" onclick="reload()">Confirmer</button>
+                </div>
+                <div class="row text-center">
+                    <h3 class="text-danger mt-3"><?= $_SESSION['errorDesc'] ?></h3>
                 </div>
             </form>
         </div>
@@ -97,6 +124,35 @@
             crossorigin="anonymous"
         ></script>
 
-        
+        <script>
+            const imagePreview = document.getElementById('image-preview');
+            const fileUpload = document.getElementById('file-upload');
+            let source;
+
+            // Ouverture de l'explorateur de fichier
+            imagePreview.addEventListener('click', function(){
+                fileUpload.click();
+            })
+
+            // Changement de l'image, lors de la sélection du fichier
+            fileUpload.addEventListener('change', function(){
+                if(this.files && this.files[0]){
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        imagePreview.src = e.target.result;
+                        source = imagePreview.src;
+                    };
+
+                    reader.readAsDataURL(this.files[0]);
+                }
+            })
+
+            function reload(){
+                fetch('image-NewPost.php?source=' + source);
+                location.reload();
+            }
+
+        </script>
     </body>
 </html>

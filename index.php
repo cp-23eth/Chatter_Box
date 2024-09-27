@@ -7,6 +7,8 @@
 </head>
 <body>
     <?php
+        $_SESSION['imgSrc'] = "";
+
         header("Location: login.php");
         exit();
 

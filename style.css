@@ -1,41 +1,94 @@
+header {
+    position: fixed;
+    height: 120px;
+    width: 1920px;
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    z-index: 1000;
+    border-bottom: 2px solid white;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background-color: #767F89;
+}
+
 h1 {
     font-size: 4.5rem;
     font-weight: 800;
     line-height: 1.2;
 }
-body {
-    font-family: 'Georgia', serif;
+
+
+.left-column, .right-column {
+    background-color: #343a40;
+    color: white;
+    position: fixed;
+    top: 0;
+    height: 1100px;
+    width: 260px;
+    padding-top: 120px;
 }
+
+.middle-column {
+    position: absolute;
+    margin-top: 125px;
+    left : 400px;
+    right : 400px;
+    height: max-content;
+    margin-bottom: 100px;
+}
+
+.left-column {
+    text-align: left;
+    left: 0;
+}
+
+.left-column h2 {
+    margin-left: 20px;
+}
+
+.right-column {
+    right: 0;
+    text-align: left;
+}
+
+.right-column h2 {
+    margin-left: 30px;
+}
+
+.side {
+    cursor: pointer;
+}
+
 .input {
     background-color: #767F89;
     color: white;
 }
+
+.logout {
+    position: absolute;
+    bottom: 50px;
+    left: 72px;
+    font-size: 18px;
+}
+
+.imgColR {
+    position: fixed;
+    bottom: 40px;
+    right: 45px;
+    height: 150px;
+    width: 150px;
+}
+
 .button {
     background-color: #767F89;
 }
-.half-right {
-    background-color: #767F89;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-.half-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-.btn-custom {
-    background-color: #767F89;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 25px;
-    font-size: 0.8rem;
-}
+
 .btn-pswd {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: white;
     color: #262626;
     width: 120px;

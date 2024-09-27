@@ -8,9 +8,9 @@
 
 <?php 
             if(isset($_POST['mdpActuel']) && isset($_POST['nouveauMdp']) && isset($_POST['nouveauMdp2'])){
-                $mdpActuel = $_POST['mdpActuel'];
-                $nouveauMdp = $_POST['nouveauMdp'];
-                $nouveauMdp2 = $_POST['nouveauMdp2'];
+                $mdpActuel = htmlspecialchars($_POST['mdpActuel']);
+                $nouveauMdp = htmlspecialchars($_POST['nouveauMdp']);
+                $nouveauMdp2 = htmlspecialchars($_POST['nouveauMdp2']);
 
                 if ($nouveauMdp === $nouveauMdp2){
                     if($db->changePassword($mdpActuel, $nouveauMdp)){
@@ -56,12 +56,12 @@
         </header>
         <main>
         <div class="left-column">
-                <h2 onclick="window.location.href='home.php'">Home</h2>
-                <h2 class="bold">My account</h2>
-                <h2 onclick="window.location.href='newPost.php'">New post</h2>
-                <h2 onclick="window.location.href='myLastPosts.php'">My posts</h2>
-                <h2 onclick="window.location.href='createCanal.php'">New Canal</h2>
-                <h2 onclick="window.location.href='subscribe.php'">Subscription</h2>
+            <h2 onclick="window.location.href='home.php'" class="side">🏠 Home</h2>
+            <h2 style="font-weight: 900;" class="side">👤 My account</h2>
+            <h2 onclick="window.location.href='newPost.php'" class="side">🆕 New post</h2>
+            <h2 onclick="window.location.href='myLastPosts.php'" class="side">💬 My posts</h2>
+            <h2 onclick="window.location.href='createCanal.php'" class="side">✏️ New Canal</h2>
+            <h2 onclick="window.location.href='subscribe.php'" class="side">➕ Subscribe</h2>
 
                 <h3 class="logout" onclick="window.location.href='login.php'">Deconnexion</h3>
         </div>
@@ -69,44 +69,44 @@
             <div class="container text-light">
                 <form action="" method="post">
                     <div class="row space">
-                        <div class="offset-2 col-4">
+                        <div class="offset-2 col-4 text-end" style="margin-left: 223px;">
                             <h2>Mot de passe actuel :</h2>
                         </div>
-                        <div class="offset-1 col-4">
-                            <input name="mdpActuel" type="text" class="border-0 mt-4 text-center">
+                        <div class="col-4">
+                            <input name="mdpActuel" type="password" class="border-0 mt-4 text-center">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="offset-2 col-4">
+                        <div class="offset-2 col-4 text-end" style="margin-left: 223px;">
                             <h2>Nouveau mot de passe :</h2>
                         </div>
-                        <div class="offset-1 col-4">
-                            <input name="nouveauMdp" type="text" class="border-0 mt-4 text-center">
+                        <div class="col-4">
+                            <input name="nouveauMdp" type="password" class="border-0 mt-4 text-center">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="offset-2 col-4">
-                            <h2>Répeter le mot de passe :</h2>
+                        <div class="offset-1 col-5 text-end" style="margin-left: 120px;">
+                            <h2>Confirmer le mot de passe :</h2>
                         </div>
-                        <div class="offset-1 col-4">
-                            <input name="nouveauMdp2" type="text" class="border-0 mt-4  text-center">
+                        <div class="col-4">
+                            <input name="nouveauMdp2" type="password" class="border-0 mt-4  text-center">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="offset-6 col-2 mt-2"> <!-- centrer -->
-                            <button type="submit" class="btn-pswd mt-2">Confirmer</button>
+                        <div class="offset-5 col-2 mt-2"> <!-- centrer -->
+                            <button type="submit" class="btn-pswd mt-3" style="margin-left: 40px;">Confirmer</button>
                         </div>
                     </div>
                 </form>
                 <div class="row">
-                    <div class="offset-5 col-4">
-                        <h4 class="text-danger"><?= $_SESSION['errorChangePswd'] ?></h4>
+                    <div class="offset-4 col-6">
+                        <h3 class="text-danger mt-4" style="margin-left: 20px;"><?= $_SESSION['errorChangePswd'] ?></h3>
                     </div>
                 </div>
             </div>
         </div>
         <div class="right-column">
-            <h2 onclick="window.location.href='myAccount.php'">My account</h2>
+            <h2 onclick="window.location.href='myAccount.php'" class="side">My account</h2>
                 <h2 class="bold">Change pswd</h2>
 
                 <img class="imgColR" src="img/Logo - chatterBox - png - white.png" alt="logo blanc">

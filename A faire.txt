@@ -1,19 +1,25 @@
-- Limiter à 850 caractères pour le post
+- Intégrer les images !!
 
-- Mettre une erreur en cas de création d'un canal existant
+- trier le css
 
-- Mettre en place une liste déroulante pour le choix du canal --> new post
+- Faire que les canaux ne depasse pas l'image
 
-- Centrer erreur + bouton change password
+- Dans my account mettre l'adresse mail sur la meme ligne que le texte
 
-- Intégrer les images
+- problèmes change password
 
-- Mettre en gras le canal actuel
+- Mettre le titre de la liste déroulante sur la liste --> New Post
 
-- Mettre le caractères spéciaux htmlspecialchars
+- Validation formulaires
 
-- Aligner le texte des menus sur la gauche
+- Mettre des icones (deconnexion)
+
+- Sécuriser le home et autres pages
 
 (- ajouter des champs utilisateur supplémentaire)
 
 (- changer le titre de la alerte box subscribe)
+
+(- bouton unsubscribe)
+
+(- Mettre un style sur la liste déroulante)

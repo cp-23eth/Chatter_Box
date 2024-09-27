@@ -8,8 +8,8 @@
 
 <?php
     if(isset($_POST['nomUser']) && isset($_POST['motDePasse'])){
-        $nomUser = $_POST['nomUser'];                
-        $motDePasse = $_POST['motDePasse'];                
+        $nomUser = htmlspecialchars($_POST['nomUser']);                
+        $motDePasse = htmlspecialchars($_POST['motDePasse']);                
 
         if($db->verifyLogin($nomUser, $motDePasse)){
             $_SESSION['user'] = $_POST['nomUser'];
@@ -41,7 +41,7 @@
             crossorigin="anonymous"
         />
 
-        <link rel="stylesheet" type="text/css" href="style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="loginSignUp.css" media="all">
     </head>
 
     <body>

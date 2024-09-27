@@ -2,13 +2,17 @@
     session_start();
     require_once('db.php');
     $db = new db("root", "");
+    $_SESSION['errorCanal'] = "";
 ?>
 
 <?php
     if(isset($_POST['nomCanal'])){
-        $nomCanal = $_POST['nomCanal'];
+        $nomCanal = htmlspecialchars($_POST['nomCanal']);
 
-        if($db->createCanal($nomCanal)){
+        if($db->checkCanal($nomCanal) === false){
+            $_SESSION['errorCanal'] = "Ce nom de canal est déjà utilisé";
+        }
+        else {
             header("Location: home.php");
             exit();
         }
@@ -44,14 +48,14 @@
         </header>
         <main>
         <div class="left-column">
-                <h2 onclick="window.location.href='home.php'">Home</h2>
-                <h2 onclick="window.location.href='myAccount.php'">My account</h2>
-                <h2 onclick="window.location.href='newPost.php'">New post</h2>
-                <h2 onclick="window.location.href='myLastPosts.php'">My posts</h2>
-                <h2 class="bold">New Canal</h2>
-                <h2 onclick="window.location.href='subscribe.php'">Subscription</h2>
+            <h2 onclick="window.location.href='home.php'" class="side">🏠 Home</h2>
+            <h2 onclick="window.location.href='myAccount.php'" class="side">👤 My account</h2>
+            <h2 onclick="window.location.href='newPost.php'" class="side">🆕 New post</h2>
+            <h2 onclick="window.location.href='myLastPosts.php'" class="side">💬 My posts</h2>
+            <h2 style="font-weight: 900;" class="side">✏️ New Canal</h2>
+            <h2 onclick="window.location.href='subscribe.php'" class="side">➕ Subscribe</h2>
 
-                <h3 class="logout" onclick="window.location.href='login.php'">Deconnexion</h3>
+            <h3 class="logout" onclick="window.location.href='login.php'">Deconnexion</h3>
         </div>
         <div class="middle-column">
             <form method="post">
@@ -69,6 +73,9 @@
                     <div class="offset-5 col-3 mt-5">
                         <button type="submit" class="btn-pswd">Confirmer</button>
                     </div>
+                </div>
+                <div class="row text-center">
+                    <h3 class="text-danger mt-3"><?= $_SESSION['errorCanal'] ?></h3>
                 </div>
             </form>
         </div>

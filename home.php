@@ -47,12 +47,12 @@
         </header>
         <main>
             <div class="left-column">
-                <h2 class="bold">Home</h2>
-                <h2 onclick="window.location.href='myAccount.php'">My account</h2>
-                <h2 onclick="window.location.href='newPost.php'">New post</h2>
-                <h2 onclick="window.location.href='myLastPosts.php'">My posts</h2>
-                <h2 onclick="window.location.href='createCanal.php'">New Canal</h2>
-                <h2 onclick="window.location.href='subscribe.php'">Subscription</h2>
+                <h2 style="font-weight: 900;" class="side">🏠 Home</h2>
+                <h2 onclick="window.location.href='myAccount.php'" class="side">👤 My account</h2>
+                <h2 onclick="window.location.href='newPost.php'" class="side">🆕 New post</h2>
+                <h2 onclick="window.location.href='myLastPosts.php'" class="side">💬 My posts</h2>
+                <h2 onclick="window.location.href='createCanal.php'" class="side">✏️ New Canal</h2>
+                <h2 onclick="window.location.href='subscribe.php'" class="side">➕ Subscribe</h2>
 
                 <h3 class="logout" onclick="window.location.href='login.php'">Deconnexion</h3>
             </div>
@@ -97,13 +97,19 @@
                 ?>
             </div>
             <div class="right-column">
-                <div class="canaux">
+                <div class="canau(x)">
                     <?php
                         $canaux = $db->takeCanal($_SESSION['nomUser']);
                         for ($i = 0; $i < count($canaux); $i++){
                             foreach($canaux[$i] as $canal){ ?>
                                 <div class="channel" channel="<?= $canal ?>">
-                                    <h2><?= $canal ?></h2>
+                                    <?php 
+                                        if ($canal == $_SESSION['canal']){?>
+                                            <h2 style="font-weight: 900;" class="side"><?= $canal ?></h2><?php
+                                        }
+                                        else {?>
+                                            <h2 class="side"><?= $canal ?></h2><?php
+                                        }?>
                                 </div>
                     <?php
                             } 

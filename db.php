@@ -102,7 +102,17 @@
         }
 
         function createPost($titre, $description, $datePost, $nomUser, $canal){
-            $stmt = $this->dbh->prepare("INSERT INTO `post` (`nom`, `description`, `datePost`, `nomUser`, `nomCanal`) VALUES(:titre, :description, :datePost, :nomUser, :canal)");
+            // $stmt = $this->dbh->prepare("INSERT INTO `post` (`nom`, `description`, `datePost`, `nomUser`, `nomCanal`, `name_img`, `image_data`) VALUES (:titre, :description, :datePost, :nomUser, :canal, :imgSrc, :image_data)");
+            // $stmt->bindParam("titre", $titre);
+            // $stmt->bindParam("description", $description);
+            // $stmt->bindParam("datePost", $datePost);
+            // $stmt->bindParam("nomUser", $nomUser);
+            // $stmt->bindParam("canal", $canal);
+            // $stmt->bindParam("imgSrc", $imgSrc);
+            // $stmt->bindParam(':image_data', $image, PDO::PARAM_LOB);
+            // $stmt->execute();
+
+            $stmt = $this->dbh->prepare("INSERT INTO `post` (`nom`, `description`, `datePost`, `nomUser`, `nomCanal`) VALUES (:titre, :description, :datePost, :nomUser, :canal)");
             $stmt->bindParam("titre", $titre);
             $stmt->bindParam("description", $description);
             $stmt->bindParam("datePost", $datePost);
@@ -135,6 +145,19 @@
             $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $posts;
+        }
+
+        function checkCanal($nomCanal){
+            $stmt = $this->dbh->prepare("SELECT * FROM `canal` WHERE `nomCanal` = :nomCanal");
+            $stmt->bindParam("nomCanal", $nomCanal);
+            $stmt->execute();
+
+            if($stmt->rowCount() !== 0){
+                return false;
+            }
+            else {
+                $this->createCanal($nomCanal);
+            }
         }
 
         function createCanal($nomCanal){

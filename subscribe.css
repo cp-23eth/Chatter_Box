@@ -1,40 +1,7 @@
-header {
-    position: fixed;
-    height: 120px;
-    width: 1920px;
-    background-color: #343a40;
+h2, h3{
     color: white;
-    text-align: center;
-    padding: 20px;
-    z-index: 1000;
-}
-
-body {
-    background-color: #767F89;
-}
-
-.left-column, .right-column {
-    background-color: #343a40;
-    color: white;
-    position: fixed;
-    top: 0;
-    height: 1100px;
-    width: 250px;
-    padding-top: 110px;
-    text-align: center;
-}
-
-.left-column {
-    left: 0;
-}
-
-.middle-column {
-    position: absolute;
-    margin-top: 140px;
-    left : 350px;
-    right : 350px;
-    height: max-content;
-    margin-bottom: 100px;
+    margin: 15px 0;
+    padding-top: 10px;
 }
 
 .post {
@@ -44,40 +11,11 @@ body {
     text-align: justify;
 }
 
-.right-column {
-    right: 0;
-}
-
-h2, h3{
-    color: white;
-    margin: 15px 0;
-    padding-top: 10px;
-}
-
 .hr {
     display: block;
     width: 620px;
     margin: 0 auto;
     color: white;
-}
-
-.bold {
-    font-weight: 700;
-}
-
-.logout {
-    position: absolute;
-    bottom: 50px;
-    left: 72px;
-    font-size: 18px;
-}
-
-.imgColR {
-    position: fixed;
-    bottom: 40px;
-    right: 45px;
-    height: 150px;
-    width: 150px;
 }
 
 .space {

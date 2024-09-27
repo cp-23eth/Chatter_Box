@@ -7,9 +7,9 @@
 
 <?php 
     if(isset($_POST['adresseMail']) && isset($_POST['nomUser']) && isset($_POST['motDePasse'])){
-        $adresseMail = $_POST['adresseMail'];
-        $nomUser = $_POST['nomUser'];
-        $motDePasse = $_POST['motDePasse'];
+        $adresseMail = htmlspecialchars($_POST['adresseMail']);
+        $nomUser = htmlspecialchars($_POST['nomUser']);
+        $motDePasse = htmlspecialchars($_POST['motDePasse']);
 
         if ($db->verifyUser($adresseMail, $nomUser)){
             if($db->createUser($adresseMail, $nomUser, $motDePasse)){
@@ -42,7 +42,7 @@
             crossorigin="anonymous"
         />
 
-        <link rel="stylesheet" type="text/css" href="style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="loginSignUp.css" media="all">
     </head>
 
     <body>
