@@ -36,9 +36,9 @@
         />
 
         <link rel="stylesheet" type="text/css" href="style.css" media="all">
-        <link rel="stylesheet" type="text/css" href="home.css" media="all">
         <script src="changeCanal.js"></script>
         <script src="logOut.js"></script>
+        <script src="fontawesome.js"></script>
     </head>
 
     <body onload="init()">
@@ -54,7 +54,9 @@
                 <h2 onclick="window.location.href='createCanal.php'" class="side">✏️ New Canal</h2>
                 <h2 onclick="window.location.href='subscribe.php'" class="side">➕ Subscribe</h2>
 
-                <h3 class="logout" onclick="window.location.href='login.php'">Deconnexion</h3>
+                <h3 class="logout" onclick="window.location.href='login.php'">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </h3>
             </div>
             <div class="middle-column">
                 <?php 
@@ -80,7 +82,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-7">
-                                <p class="description"><?= $post['description'] ?></p>
+                                <p class="descriptionHome"><?= $post['description'] ?></p>
                             </div>
                             <div class="offset-1 col-4">
                             <img class="imagePost" src="img/Cat.jpg" alt="chat">
@@ -96,7 +98,7 @@
                     }
                 ?>
             </div>
-            <div class="right-column">
+            <div class="right-column home">
                 <div class="canau(x)">
                     <?php
                         $canaux = $db->takeCanal($_SESSION['nomUser']);
@@ -116,6 +118,7 @@
                         }  
                     ?> 
                 </div>
+                <div class="sousImg"></div>
                 <img class="imgColR" src="img/Logo - chatterBox - png - white.png" alt="logo blanc">
             </div>
         </main>
@@ -134,5 +137,7 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+
+        <script src="https://kit.fontawesome.com/d91a7502cf.js" crossorigin="anonymous"></script>
     </body>
 </html>

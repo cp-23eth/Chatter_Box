@@ -24,7 +24,6 @@
         />
 
         <link rel="stylesheet" type="text/css" href="style.css" media="all">
-        <link rel="stylesheet" type="text/css" href="myAccount.css" media="all">
     </head>
 
     <body>
@@ -40,18 +39,20 @@
             <h2 onclick="window.location.href='createCanal.php'" class="side">✏️ New Canal</h2>
             <h2 onclick="window.location.href='subscribe.php'" class="side">➕ Subscribe</h2>
 
-            <h3 class="logout" onclick="window.location.href='login.php'">Deconnexion</h3>
+            <h3 class="logout" onclick="window.location.href='login.php'">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </h3>
         </div>
         <div class="middle-column text-light">
             <div class="container space">
                 <div class="row mt-5">
-                    <div class="offset-4 col-4">
-                        <h3>Nom d'utilisateur : <?= $_SESSION['nomUser'] ?></h3>
+                    <div  style="margin-left: 330px;">
+                        <h3>Nom d'utilisateur : <span class="bold"><?= $_SESSION['nomUser'] ?></span></h3>
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <div class="offset-4 col-4">
-                        <h3>Adresse mail : <?= $_SESSION['adresseMail'] ?></h3>
+                    <div style="margin-left: 330px;">
+                        <h3>Adresse mail : <span class="bold"><?= $_SESSION['adresseMail'] ?></span></h3>
                     </div>
                 </div>
             </div>
@@ -78,5 +79,7 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+
+        <script src="https://kit.fontawesome.com/d91a7502cf.js" crossorigin="anonymous"></script>
     </body>
 </html>

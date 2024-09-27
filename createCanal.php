@@ -55,23 +55,22 @@
             <h2 style="font-weight: 900;" class="side">✏️ New Canal</h2>
             <h2 onclick="window.location.href='subscribe.php'" class="side">➕ Subscribe</h2>
 
-            <h3 class="logout" onclick="window.location.href='login.php'">Deconnexion</h3>
+            <h3 class="logout" onclick="window.location.href='login.php'">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </h3>
         </div>
         <div class="middle-column">
             <form method="post">
-                <div class="row mt-5"></div>
-                <div class="row mt-5"></div>
-                <div class="row mt-5"></div>
-                <div class="row mt-5">
-                <div class="offset-2 col-2">
+                <div class="row" style="margin-top: 380px;">
+                <div class="offset-3 col-2">
                     <h2 class="text-light me-5">Nom :</h2>
                 </div>
-                <div class="offset-1 col-4">
-                    <input type="text" name="nomCanal">
+                <div class="col-4 mt-3">
+                    <input type="text" name="nomCanal" class="inputNewCanal">
                 </div>
                 <div class="row">
-                    <div class="offset-5 col-3 mt-5">
-                        <button type="submit" class="btn-pswd">Confirmer</button>
+                    <div class="offset-5 col-2 mt-5"> <!-- centrer -->
+                        <button type="submit" class="btn-pswd mt-3" style="margin-left: 35px;">Confirmer</button>
                     </div>
                 </div>
                 <div class="row text-center">
@@ -98,5 +97,7 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+
+        <script src="https://kit.fontawesome.com/d91a7502cf.js" crossorigin="anonymous"></script>
     </body>
 </html>

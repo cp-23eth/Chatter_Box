@@ -36,14 +36,16 @@
         </header>
         <main>
         <div class="left-column">
-                <h2 onclick="window.location.href='home.php'" class="side">🏠 Home</h2>
-                <h2 onclick="window.location.href='myAccount.php'" class="side">👤 My account</h2>
-                <h2 onclick="window.location.href='newPost.php'" class="side">🆕 New post</h2>
-                <h2 onclick="window.location.href='myLastPosts.php'" class="side">💬 My posts</h2>
-                <h2 onclick="window.location.href='createCanal.php'" class="side">✏️ New Canal</h2>
-                <h2 style="font-weight: 900;" class="side">➕ Subscribe</h2>
+            <h2 onclick="window.location.href='home.php'" class="side">🏠 Home</h2>
+            <h2 onclick="window.location.href='myAccount.php'" class="side">👤 My account</h2>
+            <h2 onclick="window.location.href='newPost.php'" class="side">🆕 New post</h2>
+            <h2 onclick="window.location.href='myLastPosts.php'" class="side">💬 My posts</h2>
+            <h2 onclick="window.location.href='createCanal.php'" class="side">✏️ New Canal</h2>
+            <h2 style="font-weight: 900;" class="side">➕ Subscribe</h2>
 
-                <h3 class="logout" onclick="window.location.href='login.php'">Deconnexion</h3>
+            <h3 class="logout" onclick="window.location.href='login.php'">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </h3>
         </div>
         <div class="middle-column">
             <div class="container-fluid">
@@ -84,5 +86,7 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+
+        <script src="https://kit.fontawesome.com/d91a7502cf.js" crossorigin="anonymous"></script>
     </body>
 </html>

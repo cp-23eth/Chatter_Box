@@ -47,7 +47,6 @@
         />
 
         <link rel="stylesheet" type="text/css" href="style.css" media="all">
-        <link rel="stylesheet" type="text/css" href="myAccount.css" media="all">
     </head>
 
     <body>
@@ -63,38 +62,40 @@
             <h2 onclick="window.location.href='createCanal.php'" class="side">✏️ New Canal</h2>
             <h2 onclick="window.location.href='subscribe.php'" class="side">➕ Subscribe</h2>
 
-                <h3 class="logout" onclick="window.location.href='login.php'">Deconnexion</h3>
+            <h3 class="logout" onclick="window.location.href='login.php'">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </h3>
         </div>
         <div class="middle-column">
             <div class="container text-light">
                 <form action="" method="post">
                     <div class="row space">
-                        <div class="offset-2 col-4 text-end" style="margin-left: 223px;">
+                        <div class="offset-2 col-4 text-end">
                             <h2>Mot de passe actuel :</h2>
                         </div>
                         <div class="col-4">
-                            <input name="mdpActuel" type="password" class="border-0 mt-4 text-center">
+                            <input name="mdpActuel" type="password" class="inputPswd">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="offset-2 col-4 text-end" style="margin-left: 223px;">
+                        <div class="offset-2 col-4 text-end">
                             <h2>Nouveau mot de passe :</h2>
                         </div>
                         <div class="col-4">
-                            <input name="nouveauMdp" type="password" class="border-0 mt-4 text-center">
+                            <input name="nouveauMdp" type="password" class="inputPswd">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="offset-1 col-5 text-end" style="margin-left: 120px;">
+                        <div class="offset-1 col-5 text-end">
                             <h2>Confirmer le mot de passe :</h2>
                         </div>
                         <div class="col-4">
-                            <input name="nouveauMdp2" type="password" class="border-0 mt-4  text-center">
+                            <input name="nouveauMdp2" type="password" class="inputPswd">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="offset-5 col-2 mt-2"> <!-- centrer -->
-                            <button type="submit" class="btn-pswd mt-3" style="margin-left: 40px;">Confirmer</button>
+                        <div class="offset-5 col-2 mt-4"> <!-- centrer -->
+                            <button type="submit" class="btn-pswd mt-3" style="margin-left: 35px;">Confirmer</button>
                         </div>
                     </div>
                 </form>
@@ -127,5 +128,7 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+
+        <script src="https://kit.fontawesome.com/d91a7502cf.js" crossorigin="anonymous"></script>
     </body>
 </html>

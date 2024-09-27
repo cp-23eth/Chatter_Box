@@ -63,10 +63,12 @@
             <h2 onclick="window.location.href='createCanal.php'" class="side">✏️ New Canal</h2>
             <h2 onclick="window.location.href='subscribe.php'" class="side">➕ Subscribe</h2>
 
-                <h3 class="logout" onclick="window.location.href='login.php'">Deconnexion</h3>
+            <h3 class="logout" onclick="window.location.href='login.php'">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </h3>
         </div>
         <div class="middle-column">
-            <form method="post">
+            <form method="post" style="margin-top: 150px;">
                 <div class="post">
                     <div class="container">
                         <h2><input type="text" placeholder="Titre" class="title me-5" name="titre"></h2>
@@ -97,7 +99,7 @@
                     </div>
                 </div>
                 <div class="row text-center">
-                        <button class="offset-5 col-3 btn-pswd mt-5" type="submit" onclick="reload()">Confirmer</button>
+                        <button class="btn-pswd" style="margin-top:650px;margin-left: 510px;" type="submit" onclick="reload()">Confirmer</button>
                 </div>
                 <div class="row text-center">
                     <h3 class="text-danger mt-3"><?= $_SESSION['errorDesc'] ?></h3>
@@ -152,7 +154,8 @@
                 fetch('image-NewPost.php?source=' + source);
                 location.reload();
             }
-
         </script>
+
+        <script src="https://kit.fontawesome.com/d91a7502cf.js" crossorigin="anonymous"></script>
     </body>
 </html>

@@ -1,9 +1,5 @@
 - Intégrer les images !!
 
-- trier le css
-
-- Faire que les canaux ne depasse pas l'image
-
 - Dans my account mettre l'adresse mail sur la meme ligne que le texte
 
 - problèmes change password
