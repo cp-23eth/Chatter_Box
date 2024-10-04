@@ -20,7 +20,7 @@ CREATE TABLE post(
    Id_post INT AUTO_INCREMENT,
    nom VARCHAR(50) NOT NULL,
    description VARCHAR(500),
-   imageChemin VARCHAR(255),
+   imagePath VARCHAR(1000),
    datePost DATE NOT NULL,
    nomUser VARCHAR(100) NOT NULL,
    nomCanal VARCHAR(50) NOT NULL,

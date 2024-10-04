@@ -1,7 +1,0 @@
-- Intégrer les images !!
-
-- mettre erreurs en cas de non renseignement de tous les champs my account
-
-(- changer le titre de la alerte box subscribe)
-
-(- Mettre un style sur la liste déroulante)
