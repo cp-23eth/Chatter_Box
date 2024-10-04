@@ -3,6 +3,10 @@
     require_once('db.php');
     $db = new db("root", "");
 
+    if ($_SESSION['user'] == ""){
+        header("Location: login.php");
+        exit();
+    }
 ?>
 
 <!doctype html>
@@ -58,7 +62,13 @@
                         ?>
                         <div class="canal-container">
                             <h2 class="canal-info"> <?= htmlspecialchars($canal['nomCanal']) ?> - <?= htmlspecialchars($canal['nomUser']) ?> :</h2>
-                            <button class='btn-sub' onclick="subscribe('<?= addslashes($canal['nomCanal']) ?>')">subscribe</button>
+                            <?php
+                            if ($db->verfiySubscription($canal['nomCanal'])){?>
+                                <button class='btn-sub' onclick="subscribe('<?= addslashes($canal['nomCanal']) ?>')">Subscribe</button>
+                            <?php
+                        } else { ?>
+                                <button class='btn-unsub' onclick="unSubscribe('<?= addslashes($canal['nomCanal']) ?>')">Unsubscribe</button>
+                            <?php } ?>
                         </div>
                         <hr class="hr">
                     <?php

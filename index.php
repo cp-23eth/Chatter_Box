@@ -7,14 +7,13 @@
 </head>
 <body>
     <?php
+        session_start();
+
         $_SESSION['imgSrc'] = "";
+        $_SESSION['user'] = "";
 
         header("Location: login.php");
         exit();
-
-        // session_start();
-        // require_once('db.php');
-        // $db = new db("root", "");
     ?>
 </body>
 </html>

@@ -3,6 +3,13 @@
     require_once('db.php');
     $db = new db("root", "");
 
+    
+
+    if ($_SESSION['user'] == ""){
+        header("Location: login.php");
+        exit();
+    }
+
     if ($_SESSION['canal'] == "logOut") {
         $canaux = $db->takeCanal($_SESSION['nomUser']);
         
@@ -82,10 +89,10 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-7">
-                                <p class="descriptionHome"><?= $post['description'] ?></p>
+                                <p class="description" style="margin-left: 20px;"><?= $post['description'] ?></p>
                             </div>
                             <div class="offset-1 col-4">
-                            <img class="imagePost" src="img/Cat.jpg" alt="chat">
+                                <img class="imagePost" src="<?= $post['imagePath'] ?>" alt="image">
                             </div>
                         </div>
 						<div class="row">

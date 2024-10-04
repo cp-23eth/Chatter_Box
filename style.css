@@ -71,7 +71,7 @@ h2, h3{
     width: 1100px;
 }
 
-.descriptionHome {
+.description {
     margin: 20px;
 }
 
@@ -79,6 +79,15 @@ h2, h3{
     margin: 20px;
     width: 300px;
     height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+#image-preview {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    display: block;
 }
 
 .inputPswd {
@@ -104,6 +113,7 @@ h2, h3{
 
 .button {
     background-color: #767F89;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .btn-pswd {

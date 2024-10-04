@@ -57,15 +57,15 @@
 
                         <!-- Adresse mail -->
                         <h3>Adresse mail :</h3>
-                        <input name="adresseMail" type="text" class="p-2 rounded-5 border-0 text-center fs-5 input mb-3">
+                        <input name="adresseMail" type="email" class="p-2 rounded-5 border-0 text-center fs-5 input mb-3" required>
 
                         <!-- Nom d'utilisateur -->
                         <h3 class="mt-4">Nom d'utilisateur :</h3>
-                        <input name="nomUser" type="text" class="p-2 rounded-5 border-0 text-center fs-5 input mb-3">
+                        <input name="nomUser" type="text" required class="p-2 rounded-5 border-0 text-center fs-5 input mb-3">
 
                         <!-- Mot de passe -->
                         <h3 class="mt-4">Mot de passe :</h3>
-                        <input name="motDePasse" type="password" class="p-2 rounded-5 border-0 text-center fs-5 input mb-4">
+                        <input name="motDePasse" type="password" required class="p-2 rounded-5 border-0 text-center fs-5 input mb-4">
                         <br>
 
                         <!-- Bouton submit -->

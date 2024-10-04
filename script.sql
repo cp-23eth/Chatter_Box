@@ -2,6 +2,11 @@ CREATE TABLE utilisateur(
    nomUser VARCHAR(100),
    adresseMail VARCHAR(100) NOT NULL,
    motDePasse VARCHAR(50) NOT NULL,
+   Nom VARCHAR(50),
+   Prenom VARCHAR(50),
+   Pays VARCHAR(50),
+   Age int,
+   Description VARCHAR(1000),
    PRIMARY KEY(nomUser),
    UNIQUE(adresseMail)
 );

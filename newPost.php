@@ -3,7 +3,33 @@
     require_once('db.php');
     $db = new db("root", "");
     $_SESSION['errorDesc'] = "";
+
+    if ($_SESSION['user'] == ""){
+        header("Location: login.php");
+        exit();
+    }
 ?>
+
+<?php // pour le chargement des images
+    $imgPath = "";
+    if($_SERVER['REQUEST_METHOD'] === "POST" && isset($_FILES['fileToUpload'])){
+        $error = false;
+        $finfo = $_FILES['fileToUpload'];
+
+        if($finfo['error'] != 0){
+            $error = true;
+        }
+        else {
+            if (!move_uploaded_file($finfo['tmp_name'], "./images/".$finfo['name'])){
+                $error = true;
+            }
+            else {
+                $imgPath = "./images/".$finfo['name'];
+                $_SESSION['imagePath'] =  $imgPath;
+            }
+        }
+    }
+?>  
 
 <?php
     if(isset($_POST['titre'])  && isset($_POST['description']) && isset($_POST['canaux'])){
@@ -12,10 +38,10 @@
         $date = date("Y-m-d");
         $nomUser = $_SESSION['user'];
         $canal = $_POST['canaux'];
-        // $imgSrc = $_SESSION['imgSrc'];
+        $imgPath = $_SESSION['imagePath'];
 
         if (strlen($description) < 850){
-            if($db->createPost($titre, $description, $date, $nomUser, $canal)){
+            if($db->createPost($titre, $description, $date, $nomUser, $canal, $imgPath)){
                 header("Location: home.php");
                 exit();
             }
@@ -25,6 +51,7 @@
         }
     }            
 ?>
+
 <!doctype html>
 <html lang="en">
     <head>
@@ -68,7 +95,7 @@
             </h3>
         </div>
         <div class="middle-column">
-            <form method="post" style="margin-top: 150px;">
+            <form method="post" style="margin-top: 150px;" enctype="multipart/form-data">
                 <div class="post">
                     <div class="container">
                         <h2><input type="text" placeholder="Titre" class="title me-5" name="titre"></h2>
@@ -93,13 +120,13 @@
                             </div>
                             <div class="offset-1 col-4">
                                 <img class="imagePost" src="img/upload.jpg" alt="upload icon" id="image-preview">
-                                <input id="file-upload" type="file" accept=".jpg, .jpeg, .png">
+                                <input id="fileToUpload" name="fileToUpload" type="file" accept=".jpg, .jpeg, .png">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row text-center">
-                        <button class="btn-pswd" style="margin-top:650px;margin-left: 510px;" type="submit" onclick="reload()">Confirmer</button>
+                        <button class="btn-pswd" style="margin-top:650px;margin-left: 510px;" type="submit" name="submit">Confirmer</button>
                 </div>
                 <div class="row text-center">
                     <h3 class="text-danger mt-3"><?= $_SESSION['errorDesc'] ?></h3>
@@ -126,35 +153,7 @@
             crossorigin="anonymous"
         ></script>
 
-        <script>
-            const imagePreview = document.getElementById('image-preview');
-            const fileUpload = document.getElementById('file-upload');
-            let source;
-
-            // Ouverture de l'explorateur de fichier
-            imagePreview.addEventListener('click', function(){
-                fileUpload.click();
-            })
-
-            // Changement de l'image, lors de la sélection du fichier
-            fileUpload.addEventListener('change', function(){
-                if(this.files && this.files[0]){
-                    var reader = new FileReader();
-
-                    reader.onload = function(e) {
-                        imagePreview.src = e.target.result;
-                        source = imagePreview.src;
-                    };
-
-                    reader.readAsDataURL(this.files[0]);
-                }
-            })
-
-            function reload(){
-                fetch('image-NewPost.php?source=' + source);
-                location.reload();
-            }
-        </script>
+        <script src="newPost.js"></script>
 
         <script src="https://kit.fontawesome.com/d91a7502cf.js" crossorigin="anonymous"></script>
     </body>

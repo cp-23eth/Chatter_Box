@@ -1,21 +1,7 @@
 - Intégrer les images !!
 
-- Dans my account mettre l'adresse mail sur la meme ligne que le texte
-
-- problèmes change password
-
-- Mettre le titre de la liste déroulante sur la liste --> New Post
-
-- Validation formulaires
-
-- Mettre des icones (deconnexion)
-
-- Sécuriser le home et autres pages
-
-(- ajouter des champs utilisateur supplémentaire)
+- mettre erreurs en cas de non renseignement de tous les champs my account
 
 (- changer le titre de la alerte box subscribe)
-
-(- bouton unsubscribe)
 
 (- Mettre un style sur la liste déroulante)

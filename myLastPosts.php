@@ -2,6 +2,11 @@
     session_start();
     require_once('db.php');
     $db = new db("root", "");
+
+    if ($_SESSION['user'] == ""){
+        header("Location: login.php");
+        exit();
+    }
 ?>
 
 <!doctype html>
@@ -62,16 +67,17 @@
                         }
                         
                 ?>
+                
                 <div class="post">
-                    <h2 class="m-3"><?= $post['nom'] ?> : <?= $post['nomCanal'] ?></h2>
+                    <h2 class="m-3"><?= $post['nom'] ?> : <?= $post['nomUser'] ?></h2>
                     <hr>
                     <div class="container">
                         <div class="row">
                             <div class="col-7">
-                                <p class="description"><?= $post['description'] ?></p>
+                                <p class="description" style="margin-left: 20px;"><?= $post['description'] ?></p>
                             </div>
                             <div class="offset-1 col-4">
-                            <img class="imagePost" src="img/Cat.jpg" alt="chat">
+                                <img class="imagePost" src="<?= $post['imagePath'] ?>" alt="image">
                             </div>
                         </div>
 						<div class="row">

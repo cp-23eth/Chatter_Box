@@ -4,27 +4,32 @@
     $db = new db("root", "");
 
     $_SESSION['errorChangePswd'] = "";
+
+    if ($_SESSION['user'] == ""){
+        header("Location: login.php");
+        exit();
+    }
 ?>
 
 <?php 
-            if(isset($_POST['mdpActuel']) && isset($_POST['nouveauMdp']) && isset($_POST['nouveauMdp2'])){
-                $mdpActuel = htmlspecialchars($_POST['mdpActuel']);
-                $nouveauMdp = htmlspecialchars($_POST['nouveauMdp']);
-                $nouveauMdp2 = htmlspecialchars($_POST['nouveauMdp2']);
+    if(isset($_POST['mdpActuel']) && isset($_POST['nouveauMdp']) && isset($_POST['nouveauMdp2'])){
+        $mdpActuel = htmlspecialchars($_POST['mdpActuel']);
+        $nouveauMdp = htmlspecialchars($_POST['nouveauMdp']);
+        $nouveauMdp2 = htmlspecialchars($_POST['nouveauMdp2']);
 
-                if ($nouveauMdp === $nouveauMdp2){
-                    if($db->changePassword($mdpActuel, $nouveauMdp)){
-                        header("Location : myAccount.php");
-                        exit();
-                    }
-                    else {
-                        $_SESSION['errorChangePswd'] = "Le mot de passe est incorrect";
-                    }
-                }
-                else{
-                    $_SESSION['errorChangePswd'] = "Les mots de passe ne correspondent pas";
-                }
+        if ($nouveauMdp === $nouveauMdp2){
+            if($db->changePassword($mdpActuel, $nouveauMdp)){
+                header("Location: myAccount.php");
+                exit();
             }
+            else {
+                $_SESSION['errorChangePswd'] = "Le mot de passe est incorrect";
+            }
+        }
+        else{
+            $_SESSION['errorChangePswd'] = "Les mots de passe ne correspondent pas";
+        }
+    }
 ?>
 
 <!doctype html>
@@ -99,11 +104,23 @@
                         </div>
                     </div>
                 </form>
-                <div class="row">
-                    <div class="offset-4 col-6">
-                        <h3 class="text-danger mt-4" style="margin-left: 20px;"><?= $_SESSION['errorChangePswd'] ?></h3>
+                <?php
+                if($_SESSION['errorChangePswd'] == "Le mot de passe est incorrect"){?>
+                    <div class="row">
+                        <div class="offset-4 col-6">
+                            <h3 class="text-danger mt-4" style="margin-left: 20px"><?= $_SESSION['errorChangePswd'] ?></h3>
+                        </div>
                     </div>
-                </div>
+                <?php }
+                else {?>
+                    <div class="row">
+                        <div class="offset-3 col-6">
+                            <h3 class="text-danger mt-4" style="margin-left: 35px"><?= $_SESSION['errorChangePswd'] ?></h3>
+                        </div>
+                    </div>
+                <?php
+                } ?>
+                
             </div>
         </div>
         <div class="right-column">

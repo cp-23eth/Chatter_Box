@@ -57,25 +57,32 @@
 
         function changePassword($mdpActuel, $nouveauMdp){
             $nomUser = $_SESSION['nomUser'];
+
             $stmt = $this->dbh->prepare("SELECT `motDePasse` FROM `utilisateur` WHERE `motDePasse` = :motDePasse AND `nomUser` = :nomUser");
             $stmt->bindParam(':motDePasse', $mdpActuel);
             $stmt->bindParam(':nomUser', $nomUser);
             $stmt->execute();
 
-            $value = $stmt->rowCount();
-
-            if ($value === 1){
-                $stmt = $this->dbh->prepare("UPDATE `utilisateur` SET `motDePasse` = :nouveauMdp WHERE `nomUser` = :nomUser");
-                $stmt->bindParam(':nouveauMdp', $nouveauMdp);
-                $stmt->bindParam(':nomUser', $nomUser);
-                $stmt->execute();
-
-                $_SESSION['motDePasse'] = $nouveauMdp;
-                return true;
+            if ($stmt->rowCount() === 1){
+                if($this->changePassword2($nouveauMdp)){
+                    return true;
+                }
             }
             else {
                 return false;
             }
+        }
+
+        function changePassword2($nouveauMdp){
+            $nomUser = $_SESSION['nomUser'];
+
+            $stmt = $this->dbh->prepare("UPDATE `utilisateur` SET `motDePasse` = :nouveauMdp WHERE `nomUser` = :nomUser");
+            $stmt->bindParam(':nouveauMdp', $nouveauMdp);
+            $stmt->bindParam(':nomUser', $nomUser);
+            $stmt->execute();
+
+            $_SESSION['motDePasse'] = $nouveauMdp;
+            return true;
         }
 
         function takeCanal($nomUser){
@@ -101,20 +108,11 @@
             return $canaux;
         }
 
-        function createPost($titre, $description, $datePost, $nomUser, $canal){
-            // $stmt = $this->dbh->prepare("INSERT INTO `post` (`nom`, `description`, `datePost`, `nomUser`, `nomCanal`, `name_img`, `image_data`) VALUES (:titre, :description, :datePost, :nomUser, :canal, :imgSrc, :image_data)");
-            // $stmt->bindParam("titre", $titre);
-            // $stmt->bindParam("description", $description);
-            // $stmt->bindParam("datePost", $datePost);
-            // $stmt->bindParam("nomUser", $nomUser);
-            // $stmt->bindParam("canal", $canal);
-            // $stmt->bindParam("imgSrc", $imgSrc);
-            // $stmt->bindParam(':image_data', $image, PDO::PARAM_LOB);
-            // $stmt->execute();
-
-            $stmt = $this->dbh->prepare("INSERT INTO `post` (`nom`, `description`, `datePost`, `nomUser`, `nomCanal`) VALUES (:titre, :description, :datePost, :nomUser, :canal)");
+        function createPost($titre, $description, $datePost, $nomUser, $canal, $imgPath){
+            $stmt = $this->dbh->prepare("INSERT INTO `post` (`nom`, `description`, `imagePath`, `datePost`, `nomUser`, `nomCanal`) VALUES (:titre, :description, :imagePath, :datePost, :nomUser, :canal)");
             $stmt->bindParam("titre", $titre);
             $stmt->bindParam("description", $description);
+            $stmt->bindParam("imagePath", $imgPath);
             $stmt->bindParam("datePost", $datePost);
             $stmt->bindParam("nomUser", $nomUser);
             $stmt->bindParam("canal", $canal);
@@ -176,6 +174,21 @@
             $stmt->execute();
         }
 
+        function verfiySubscription($sub){
+            $nomUser = $_SESSION['nomUser'];
+            $stmt = $this->dbh->prepare("SELECT * FROM `appartient` WHERE `nomUser` = :nomUser AND `nomCanal` = :sub");
+            $stmt->bindParam("nomUser", $nomUser);
+            $stmt->bindParam("sub", $sub);
+            $stmt->execute();
+
+            if ($stmt->rowCount() == 1){
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+
         function makeSubscription($sub){
             $nomUser = $_SESSION['nomUser'];
             $stmt = $this->dbh->prepare("INSERT INTO `appartient` (`nomUser`, `nomCanal`, `isAdmin`) VALUES (:nomUser, :sub, 0)");
@@ -184,6 +197,50 @@
             $stmt->execute();
 
             return true;
+        }
+
+        function makeUnsubscription($sub){
+            $nomUser = $_SESSION['nomUser'];
+            $stmt = $this->dbh->prepare("DELETE FROM `appartient` WHERE `nomUser` = :nomUser AND `nomCanal` = :sub");
+            $stmt->bindParam("nomUser", $nomUser);
+            $stmt->bindParam("sub", $sub);
+            $stmt->execute();
+        }
+
+        function takeFirstCanal() {
+            $nomUser = $_SESSION['nomUser'];
+            $stmt = $this->dbh->prepare("SELECT `nomCanal` FROM `appartient` WHERE `nomUser` = :nomUser LIMIT 1");
+            $stmt->bindParam("nomUser", $nomUser);
+            $stmt->execute();
+
+            $firstCanal = $stmt->fetch(PDO::FETCH_ASSOC)['nomCanal'];
+
+            return $firstCanal;
+        }
+
+        function addInfosUser($nom, $prenom, $pays, $age, $description){
+            $nomUser = $_SESSION['nomUser'];
+            $stmt = $this->dbh->prepare("UPDATE `utilisateur` SET `Nom` = :nom, `Prenom` = :prenom, `Pays` = :pays, `Age` = :age, `Description` = :description WHERE `nomUser` = :nomUser");
+            $stmt->bindParam(":nom", $nom);
+            $stmt->bindParam(":prenom", $prenom);
+            $stmt->bindParam(":pays", $pays);
+            $stmt->bindParam(":age", $age);
+            $stmt->bindParam(":description", $description);
+            $stmt->bindParam(":nomUser", $nomUser);
+            $stmt->execute();
+
+            return true;
+        }
+
+        function takeInfosUser(){
+            $nomUser = $_SESSION['nomUser'];
+            $stmt = $this->dbh->prepare("SELECT `nom`, `prenom`, `pays`, `age`, `description` FROM `utilisateur` WHERE `nomUser` = :nomUser");
+            $stmt->bindParam("nomUser", $nomUser);
+            $stmt->execute();
+
+            $infoUser = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            return $infoUser;
         }
     }
 ?>

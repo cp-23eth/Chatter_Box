@@ -6,14 +6,17 @@ function changeCanal(channel) {
 async function subscribe(sub){
     const result = await fetch('makeSubsciption.php?sub=' +sub);
     const text = await result.text();
-    if (text.startsWith("Vous vous êtes")){
-        alert(text);
-    }
-    else {
-        alert("Vous êtes déjà abonnés à ce canal")
-    }
-    location.reload;
+    window.location.reload(true);
+    // alert(text);
 }
+
+async function unSubscribe(sub){
+    const result = await fetch('makeUnsubsciption.php?sub=' +sub);
+    const text = await result.text();
+    window.location.reload(true);
+    // alert(text);
+}
+
 
 function init(){
     const channels = document.getElementsByClassName("channel");

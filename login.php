@@ -4,6 +4,12 @@
     $db = new db("root", "");
     $_SESSION['errorLogin'] = "";
     $_SESSION['canal'] = "logOut";
+    $_SESSION['user'] = "";
+    $_SESSION['nom'] = "";
+    $_SESSION['prenom'] = "";
+    $_SESSION['pays'] = "";
+    $_SESSION['age'] = "";
+    $_SESSION['description'] = "";
 ?>
 
 <?php
@@ -56,11 +62,11 @@
 
                             <!-- Nom d'utilisateur -->
                             <h3>Nom d'utilisateur :</h3>
-                            <input name="nomUser" type="text" class="p-2 rounded-5 border-0 text-center fs-5 input mb-3">
+                            <input name="nomUser" type="text" required class="p-2 rounded-5 border-0 text-center fs-5 input mb-3">
 
                             <!-- Mot de passe -->
                             <h3 class="mt-4">Mot de passe :</h3>
-                            <input name="motDePasse" type="password" class="p-2 rounded-5 border-0 text-center fs-5 input mb-4">
+                            <input name="motDePasse" type="password" required class="p-2 rounded-5 border-0 text-center fs-5 input mb-4">
                             <br>
 
                             <!-- Bouton submit -->

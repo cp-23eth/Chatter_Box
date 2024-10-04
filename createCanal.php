@@ -3,6 +3,11 @@
     require_once('db.php');
     $db = new db("root", "");
     $_SESSION['errorCanal'] = "";
+
+    if ($_SESSION['user'] == ""){
+        header("Location: login.php");
+        exit();
+    }
 ?>
 
 <?php
