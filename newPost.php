@@ -28,9 +28,7 @@
             }
         }
     }
-?>  
 
-<?php
     if(isset($_POST['titre'])  && isset($_POST['description']) && isset($_POST['canaux'])){
         $titre = htmlspecialchars($_POST['titre']);
         $description = htmlspecialchars($_POST['description']);
