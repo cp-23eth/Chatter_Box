@@ -1,3 +1,7 @@
+DROP SCHEMA IF EXISTS chatterbox;
+CREATE SCHEMA chatterbox;
+USE chatterbox;
+
 CREATE TABLE utilisateur(
    nomUser VARCHAR(100),
    adresseMail VARCHAR(100) NOT NULL,

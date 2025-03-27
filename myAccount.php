@@ -21,9 +21,7 @@
         header("Location: myAccount-complete.php");
         exit();
     }
-?>
 
-<?php
     if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['pays']) && isset($_POST['age']) && isset($_POST['description'])){
         if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['pays']) && !empty($_POST['age']) && !empty($_POST['description'])){
             $_SESSION['nom'] = $_POST['nom'];

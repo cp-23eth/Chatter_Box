@@ -4,7 +4,7 @@
 
         function __construct($user, $password)
         {
-            $this->dbh = new PDO('mysql:host=localhost;dbname=chatterbox', $user, $password);
+            $this->dbh = new PDO('mysql:host=172.17.0.2;dbname=chatterbox', $user, $password);
         }
 
         function verifyUser($adresseMail, $nomUser){

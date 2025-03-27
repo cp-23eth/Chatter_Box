@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "1234"
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database/script.sql:/docker-entrypoint-initdb.d/script.sql
+
+  php:
+    image: php:7.4-apache
+    container_name: php
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - "80:80"
+    volumes:
+      - ./files:/var/www/html
+    command: >
+      bash -c "docker-php-ext-install pdo pdo_mysql &&
+               docker-php-ext-enable pdo_mysql &&
+               mkdir -p /var/www/html/images &&
+               chmod 777 /var/www/html/images &&
+               apache2-foreground"

@@ -9,9 +9,7 @@
         header("Location: login.php");
         exit();
     }
-?>
 
-<?php 
     if(isset($_POST['mdpActuel']) && isset($_POST['nouveauMdp']) && isset($_POST['nouveauMdp2'])){
         $mdpActuel = htmlspecialchars($_POST['mdpActuel']);
         $nouveauMdp = htmlspecialchars($_POST['nouveauMdp']);

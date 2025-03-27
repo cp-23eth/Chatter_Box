@@ -8,9 +8,7 @@
         header("Location: login.php");
         exit();
     }
-?>
 
-<?php
     if(isset($_POST['nomCanal'])){
         $nomCanal = htmlspecialchars($_POST['nomCanal']);
 

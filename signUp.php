@@ -3,9 +3,7 @@
     require_once('db.php');
     $db = new db("root", "");
     $_SESSION['errorSignUp'] = "";
-?>
 
-<?php 
     if(isset($_POST['adresseMail']) && isset($_POST['nomUser']) && isset($_POST['motDePasse'])){
         $adresseMail = htmlspecialchars($_POST['adresseMail']);
         $nomUser = htmlspecialchars($_POST['nomUser']);

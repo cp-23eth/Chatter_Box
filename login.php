@@ -10,9 +10,7 @@
     $_SESSION['pays'] = "";
     $_SESSION['age'] = "";
     $_SESSION['description'] = "";
-?>
 
-<?php
     if(isset($_POST['nomUser']) && isset($_POST['motDePasse'])){
         $nomUser = htmlspecialchars($_POST['nomUser']);                
         $motDePasse = htmlspecialchars($_POST['motDePasse']);                

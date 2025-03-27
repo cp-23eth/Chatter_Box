@@ -8,9 +8,8 @@
         header("Location: login.php");
         exit();
     }
-?>
 
-<?php // pour le chargement des images
+    // pour le chargement des images
     $imgPath = "";
     if($_SERVER['REQUEST_METHOD'] === "POST" && isset($_FILES['fileToUpload'])){
         $error = false;
