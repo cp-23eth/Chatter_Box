@@ -1,0 +1,5 @@
+1. Faire tourner le docker_compose
+2. Copier le script.sql dans un dossier sous C:\Chatterbox\database
+3. Copier tous les autres fichiers sous C:\Chatterbox\files
+4. docker-compose up -d --> dans le dossier le C:\Chatterbox\
+5. Lancez localhost

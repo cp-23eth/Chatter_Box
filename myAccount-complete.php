@@ -1,7 +1,7 @@
 <?php
     session_start();
     require_once('db.php');
-    $db = new db("root", "");
+    $db = new db("root", "1234");
 
     if ($_SESSION['user'] == ""){
         header("Location: login.php");

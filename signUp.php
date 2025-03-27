@@ -1,7 +1,7 @@
 <?php
     session_start();
     require_once('db.php');
-    $db = new db("root", "");
+    $db = new db("root", "1234");
     $_SESSION['errorSignUp'] = "";
 
     if(isset($_POST['adresseMail']) && isset($_POST['nomUser']) && isset($_POST['motDePasse'])){

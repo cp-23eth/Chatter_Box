@@ -10,7 +10,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./database/script.sql:/docker-entrypoint-initdb.d/script.sql
+      - C:/Chatterbox/database/script.sql:/docker-entrypoint-initdb.d/script.sql
 
   php:
     image: php:7.4-apache
@@ -21,7 +21,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./files:/var/www/html
+      - C:/Chatterbox/files:/var/www/html
     command: >
       bash -c "docker-php-ext-install pdo pdo_mysql &&
                docker-php-ext-enable pdo_mysql &&
